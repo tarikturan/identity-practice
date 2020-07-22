@@ -1,0 +1,17 @@
+.join-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
+.register-link {
+  font-weight: bold;
+  color: green;
+}
+
+.login-link {
+  font-weight: bold;
+  color: blue;
+}
+

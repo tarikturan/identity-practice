@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  font-family: sans-serif;
+}
+
+navbar {
+  background-color: #4b6584;
+  color: white;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 5em;
+  display: flex;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+navbar i {
+  margin: auto 0 auto 10px;
+  padding: 15px;
+  transition: transform 1s;
+  text-shadow: 2px 2px 4px #0c2461;
+}
+
+i:hover {
+  border-radius: 26px;
+  transform: rotate(180deg);
+}
+
+.logo {
+  margin: auto;
+}
+
+aside {
+  overflow-x: hidden;
+  width: 0;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  background-color: #38ada9;
+  transition: width 0.5s ease-in-out;
+
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside ul li {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 12px 0 12px 22px;
+  font-weight: 400;
+  transition: transform 0.5s;
+  cursor: pointer;
+  text-shadow: 2px 2px 4px #0c2461;
+}
+
+aside ul li i {
+  margin-right: 1em;
+}
+
+li:hover {
+  transform: translateX(5px);
+  color: #0c2461 !important;
+  border-left: 5px solid #0c2461;
+  margin-top: 3px;
+  text-shadow: 2px 2px 4px #0c2461;
+}
+
+.drawerMin {
+  width: 70px;
+}
+
+.drawerOpen {
+  width: 240px;
+}
+
+main {
+  position: absolute;
+  top: 80px;
+  padding: 1em;
+  margin-left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.mainMin {
+  margin-left: 70px;
+}
+
+.mainOpen {
+  margin-left: 240px;
+
+  vertical-align: 2em;
+}
+
+.add-form {
+  margin-bottom: 1em;
+  color: #0c2461;
+  background-color: #d1d8e0;
+  border-radius: 8px;
+  box-shadow: 3px 3px #ccc;
+}
