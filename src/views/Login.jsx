@@ -16,8 +16,6 @@ const Login = (props) => {
     props.loginUser(loginData, props.history);
     e.preventDefault();
   };
-
-  console.log(props.userData);
   return (
     <div className="join-form">
       <Form onSubmit={(e) => onSubmit(e)}>

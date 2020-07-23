@@ -2,20 +2,19 @@ import React from "react";
 import "./App.css";
 import "./sidebar.css";
 import { Route, Switch } from "react-router-dom";
-
-import Dashboard from "./views/Dashboard";
-
+import Panel from "./views/Panel";
 import Login from "./views/Login";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/panel" component={Panel} />
+        <Route path="/login" component={Login} />
         <Route path="/" component={Login} />
       </Switch>
     </div>
   );
-}
+};
 
 export default App;

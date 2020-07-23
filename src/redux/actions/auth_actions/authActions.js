@@ -12,7 +12,7 @@ export const loginUser = (userData,history) => (dispatch) => {
       const decoded = jwt_decode(response.data.token);
       console.log(decoded.position);
       dispatch({ type: actionTypes.LOGIN_USER_SUCCESS, payload: {UserName: decoded.UserName, position: decoded.position} });
-      //history.push("/dashboard");
+      history.push("/panel");
     })
     .catch((error) => alert(error));
 };
