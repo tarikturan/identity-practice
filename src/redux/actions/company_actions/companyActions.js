@@ -6,7 +6,13 @@ export const getUser = (userName) => (dispatch) => {
   axios
     .get(getUserUrl + userName)
     .then((response) => {
-      dispatch({ type: actionTypes.GET_USER_SUCCESS, payload: response });
+      dispatch({
+        type: actionTypes.GET_USER_SUCCESS,
+        payload: {
+          companyName: response.data.companyName,
+          companyId: response.data.companyId,
+        },
+      });
     })
 
     .catch((error) => alert("Birşeyler ters gitti!"));

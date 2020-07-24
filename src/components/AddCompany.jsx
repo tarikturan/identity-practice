@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { addPoldyCompany, addCompany} from "../redux/actions/poldy_actions/poldyActions"
 
 const AddCompany = (props) => {
   const [companyName, setCompanyName] = useState("");
-  const [companyId, setCompanyId] = useState(null);
+  const [subCompanyId, setSubCompanyId] = useState(null);
 
   const companyData = {
       companyName: companyName,
-      companyId: companyId
+      subCompanyId: parseInt(subCompanyId)
   }
 
   const onSubmit = (e) => {
+    props.addPoldyCompany(companyData);
+    props.addCompany(companyData);
     e.preventDefault(companyData);
   };
 
   return (
     <div className="add-form col-sm-4">
-      <Form
+      <Form 
         className="row justify-content-center"
         onSubmit={(e) => onSubmit(e)}
       >
@@ -38,7 +41,7 @@ const AddCompany = (props) => {
           <Input
             type="number"
             placeholder="Şirket Kodu"
-            onChange={(e) => setCompanyId(e.target.value)}
+            onChange={(e) => setSubCompanyId(e.target.value)}
             required
           />
         </FormGroup>
@@ -51,4 +54,4 @@ const AddCompany = (props) => {
   );
 };
 
-export default connect(null)(AddCompany);
+export default connect(null, {addCompany, addPoldyCompany})(AddCompany);

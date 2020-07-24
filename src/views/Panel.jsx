@@ -39,7 +39,7 @@ class Panel extends Component {
 
     return (
       <div className="AdminSidebar">
-        <navbar>
+        <div className="navbar">
           {" "}
           <i className="material-icons" onClick={this.handleDrawer}>
             menu
@@ -50,7 +50,7 @@ class Panel extends Component {
             src="https://www.poldy.com.tr/Content/gfx/logo-white.png"
             alt="POLDY LOGO"
           />{" "}
-        </navbar>
+        </div>
         <aside className={drawerClass.join(" ")}>
           <ul>
             <li>
@@ -60,6 +60,8 @@ class Panel extends Component {
           </ul>
         </aside>
         <main className={mainClass.join(" ")}>
+          <h3>{this.props.companyName}</h3>
+          <p>Hoşgeldin {this.props.userName}</p>
           {this.props.position === "PoldyAdmin" ? (
             <PoldyDash></PoldyDash>
           ) : this.props.position === "CompanyAdmin" ? (
@@ -86,6 +88,9 @@ const mapStateToProps = (state) => {
       : null,
     userName: state.authReducer.tokenData
       ? state.authReducer.tokenData.UserName
+      : null,
+    companyName: state.companyReducer.userData
+      ? state.companyReducer.userData.companyName
       : null,
   };
 };

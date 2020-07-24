@@ -1,7 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addUser } from "../redux/actions/poldy_actions/poldyActions";
-import { getUser } from "../redux/actions/company_actions/companyActions"
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const AddUser = (props) => {
@@ -31,18 +30,20 @@ const AddUser = (props) => {
     props.addUser(userData, userData.position);
   };
 
+  useEffect(() => {
+    onFormVisible();
+  }, []);
+
   const onFormVisible = () => {
     let visible = false;
-    if (this.props.auth.user.user.companyId == 1) {
+    if (props.userData.companyId === 1) {
       visible = true;
+    }
+    if (props.userData.companyId !== 1) {
+      setCompanyId(props.userData.companyId);
     }
     setFormVisible(visible);
   };
-
-  useEffect(() => {
-    getUser(props.userName)
-  });
-  console.log(props.userName)
 
   return (
     <div className="add-form col-sm-4">
@@ -90,16 +91,18 @@ const AddUser = (props) => {
             required
           />
         </FormGroup>
+        {fromVisible ? (
+          <FormGroup>
+            <Label>Şirket Kodu</Label>
+            <Input
+              type="number"
+              placeholder="Şirket Kodu"
+              onChange={(e) => setCompanyId(e.target.value)}
+              required
+            />
+          </FormGroup>
+        ) : null}
 
-        <FormGroup>
-          <Label>Şirket Kodu</Label>
-          <Input
-            type="number"
-            placeholder="Şirket Kodu"
-            onChange={(e) => setCompanyId(e.target.value)}
-            required
-          />
-        </FormGroup>
         <FormGroup>
           <Label>Rol</Label>
           <Input
@@ -139,8 +142,8 @@ const AddUser = (props) => {
 const mapStateProps = (state) => {
   return {
     userData: state.companyReducer.userData,
-    userName: state.authReducer.tokenData.userName
+    tokenData: state.authReducer.tokenData,
   };
 };
 
-export default connect(mapStateProps, { addUser, getUser })(AddUser);
+export default connect(mapStateProps, { addUser })(AddUser);

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { loginUser } from "../redux/actions/auth_actions/authActions";
+import { loginUser} from "../redux/actions/auth_actions/authActions";
+import { getUser } from "../redux/actions/company_actions/companyActions"
 
 const Login = (props) => {
   const [stateUserName, setUserName] = useState("");
@@ -14,8 +15,13 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     props.loginUser(loginData, props.history);
+    props.getUser(loginData.userName)
     e.preventDefault();
   };
+
+
+ 
+
   return (
     <div className="join-form">
       <Form onSubmit={(e) => onSubmit(e)}>
@@ -60,4 +66,4 @@ const mapStateToProps = (state) => {
     userData: state.authReducer.tokenData
   };
 };
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, getUser })(Login);
