@@ -1,6 +1,12 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
-import { addUserUrl, poldyCompanyAddUrl, companyAddUrl } from "../apiUrl";
+import {
+  addUserUrl,
+  poldyCompanyAddUrl,
+  companyAddUrl,
+  getListCompanyUrl,
+  updateCompanyUrl,
+} from "../apiUrl";
 
 export const addUser = (userData, position) => (dispatch) => {
   if (userData.password !== userData.passwordAgain) {
@@ -34,4 +40,19 @@ export const addCompany = (companyData) => (dispatch) => {
       dispatch({ type: actionTypes.ADD_COMPANY_SUCCESS });
     })
     .catch((error) => console.log(error));
+};
+
+export const getListCompany = () => (dispatch) => {
+  axios
+    .get(getListCompanyUrl)
+    .then((response) => {
+      dispatch({ type: actionTypes.GET_LIST_COMPANY, payload: response.data });
+    })
+    .catch((error) => console.log(error));
+};
+
+export const updateCompany = (companyData) => (dispatch) => {
+  axios.post(updateCompanyUrl, companyData).then((response) => {
+    dispatch({ type: actionTypes.UPDATE_COMPANY_SUCCESS });
+  }).catch(error => console.log(error));
 };

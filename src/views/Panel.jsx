@@ -50,6 +50,10 @@ class Panel extends Component {
             src="https://www.poldy.com.tr/Content/gfx/logo-white.png"
             alt="POLDY LOGO"
           />{" "}
+          <div>
+            <strong>{this.props.companyName}</strong>
+            <p>Hoşgeldin {this.props.userName}</p>
+          </div>
         </div>
         <aside className={drawerClass.join(" ")}>
           <ul>
@@ -60,8 +64,6 @@ class Panel extends Component {
           </ul>
         </aside>
         <main className={mainClass.join(" ")}>
-          <h3>{this.props.companyName}</h3>
-          <p>Hoşgeldin {this.props.userName}</p>
           {this.props.position === "PoldyAdmin" ? (
             <PoldyDash></PoldyDash>
           ) : this.props.position === "CompanyAdmin" ? (

@@ -1,0 +1,20 @@
+.gridInputBorderless {
+    border: none;
+    background-color: transparent;
+    color: black;
+}
+
+.gridInputWithBorder {
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    border-left: solid #F79F1F 2px;
+    color: black;
+    background-color: transparent;
+}
+
+.gridTable {
+  
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+}
