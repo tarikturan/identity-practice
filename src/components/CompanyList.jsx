@@ -5,6 +5,7 @@ import {
   updateCompany,
   addCompany,
   addPoldyCompany,
+  deleteCompany,
 } from "../redux/actions/poldy_actions/poldyActions";
 import {
   Table,
@@ -28,12 +29,25 @@ const CompanyList = (props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [companyName, setCompanyName] = useState("");
   const [subCompanyId, setSubCompanyId] = useState(null);
+  const [updatedCompanyId, setUpdatedCompId] = useState(null);
+  const [updatedCompanyName, setUpdatedCompName] = useState(null);
+  const [updatedSubCompanyId, setUpdatedSubCompId] = useState(null);
+
+
+  const updatedComp = {
+    companyId: parseInt(updatedCompanyId),
+    subCompanyId: parseInt(updatedSubCompanyId),
+    companyName: updatedCompanyName,
+  };
 
   useEffect(() => {
     props.getListCompany();
-  },[]);
+  }, []);
 
-  const toggle = () => setIsOpenModal(!isOpenModal);
+  const toggle = () => {
+    props.getListCompany();
+    setIsOpenModal(!isOpenModal);
+  };
   const editClick = () => {
     setDisabled(false);
     setVisible(true);
@@ -41,7 +55,7 @@ const CompanyList = (props) => {
   };
 
   const saveClick = (e) => {
-    props.updateCompany(companies[e.target.id]);
+    props.updateCompany(updatedComp);
     props.getListCompany();
     setInputClass("gridInputBorderless");
     setDisabled(true);
@@ -58,13 +72,28 @@ const CompanyList = (props) => {
     props.addPoldyCompany(companyData);
   };
   const companies = props.companies;
-  console.log(companyData);
+
+  const onChange = (e) => {
+    var filtre = companies.filter((comp) => comp.companyName === e.target.name);
+    setUpdatedCompId(filtre[0].companyId);
+    setUpdatedSubCompId(filtre[0].subCompanyId);
+    setUpdatedCompName(e.target.value);
+  };
+
+  const deleteEvent = (e) => {
+    debugger;
+    var filtre = companies.filter((comp) => comp.companyName === e.target.name);
+    props.deleteCompany(filtre[0]);
+    props.getListCompany();
+  };
+
+
   return (
-    <div className="gridTable">
-      <Table striped>
+    <div>
+      <Table className="gridTable" striped>
         <thead>
           <tr>
-            <th>Şirket ID</th>
+            <th>ID</th>
             <th>Şirket Adı</th>
             <th>
               {!isVisible ? (
@@ -97,19 +126,19 @@ const CompanyList = (props) => {
                 <th scope="row">{company.companyId}</th>
                 <td>
                   <input
-                    id={company.companyId - 1}
+                    id={company.companyId}
                     className={inputClass}
+                    name={company.companyName}
                     defaultValue={company.companyName}
                     disabled={isDisabled}
-                    onChange={(e) =>
-                      (companies[e.target.id].companyName = e.target.value)
-                    }
+                    onChange={(e) => onChange(e)}
                   />
                 </td>
                 <td>
                   {isVisible ? (
                     <ButtonToggle
                       id={company.companyId - 1}
+                      name={company.companyName}
                       size="sm"
                       onClick={(e) => saveClick(e)}
                       color="success"
@@ -118,7 +147,19 @@ const CompanyList = (props) => {
                     </ButtonToggle>
                   ) : null}
                 </td>
-                <td></td>
+                <td>
+                  {isVisible ? (
+                    <ButtonToggle
+                      id={company.companyId}
+                      name={company.companyName}
+                      size="sm"
+                      color="danger"
+                      onClick={(e) => deleteEvent(e)}
+                    >
+                      SİL
+                    </ButtonToggle>
+                  ) : null}
+                </td>
               </tr>
             );
           })}
@@ -168,4 +209,5 @@ export default connect(mapStateToProps, {
   updateCompany,
   addCompany,
   addPoldyCompany,
+  deleteCompany,
 })(CompanyList);

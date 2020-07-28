@@ -19,6 +19,8 @@ export const poldyReducer = (state = INITIAL_STATE, action) => {
       };
     case actionTypes.UPDATE_COMPANY_SUCCESS:
       return state;
+    case actionTypes.DELETE_COMPANY_SUCCESS:
+      return state;
     default:
       return state;
   }

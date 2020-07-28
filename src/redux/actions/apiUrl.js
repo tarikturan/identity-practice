@@ -8,9 +8,10 @@ export const getUserUrl = apiUrl + "/api/PoldyCompany/getUser?userName=";
 
 export const poldyCompanyAddUrl = apiUrl + "/api/PoldyCompany/add";
 
-
 export const companyAddUrl = apiUrl + "/api/Company/add";
 
-export const getListCompanyUrl = apiUrl +"/api/PoldyCompany/getListCompany";
+export const getListCompanyUrl = apiUrl + "/api/PoldyCompany/getListCompany";
 
-export const updateCompanyUrl = apiUrl+ "/api/PoldyCompany/update"
+export const updateCompanyUrl = apiUrl + "/api/PoldyCompany/update";
+
+export const deleteCompanyUrl = apiUrl + "/api/Company/delete";

@@ -6,6 +6,7 @@ import {
   companyAddUrl,
   getListCompanyUrl,
   updateCompanyUrl,
+  deleteCompanyUrl,
 } from "../apiUrl";
 
 export const addUser = (userData, position) => (dispatch) => {
@@ -52,7 +53,21 @@ export const getListCompany = () => (dispatch) => {
 };
 
 export const updateCompany = (companyData) => (dispatch) => {
-  axios.post(updateCompanyUrl, companyData).then((response) => {
-    dispatch({ type: actionTypes.UPDATE_COMPANY_SUCCESS });
-  }).catch(error => console.log(error));
+  axios
+    .post(updateCompanyUrl, companyData)
+    .then((response) => {
+      dispatch({ type: actionTypes.UPDATE_COMPANY_SUCCESS });
+    })
+    .catch((error) => console.log(error));
+};
+
+export const deleteCompany = (companyData) => (dispatch) => {
+  debugger;
+  axios
+    .post(deleteCompanyUrl, companyData)
+    .then((response) => {
+      console.log(response);
+      dispatch({type: actionTypes.DELETE_COMPANY_SUCCESS})
+    })
+    .catch((error) => console.log(error));
 };
