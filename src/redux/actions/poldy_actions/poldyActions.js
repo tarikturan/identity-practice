@@ -34,6 +34,7 @@ export const addPoldyCompany = (companyData) => (dispatch) => {
 };
 
 export const addCompany = (companyData) => (dispatch) => {
+  debugger;
   axios
     .post(companyAddUrl, companyData)
     .then((response) => {

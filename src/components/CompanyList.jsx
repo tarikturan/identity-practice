@@ -33,7 +33,6 @@ const CompanyList = (props) => {
   const [updatedCompanyName, setUpdatedCompName] = useState(null);
   const [updatedSubCompanyId, setUpdatedSubCompId] = useState(null);
 
-
   const updatedComp = {
     companyId: parseInt(updatedCompanyId),
     subCompanyId: parseInt(updatedSubCompanyId),
@@ -42,7 +41,7 @@ const CompanyList = (props) => {
 
   useEffect(() => {
     props.getListCompany();
-  }, []);
+  }, [props.companies]);
 
   const toggle = () => {
     props.getListCompany();
@@ -71,6 +70,7 @@ const CompanyList = (props) => {
     props.addCompany(companyData);
     props.addPoldyCompany(companyData);
   };
+
   const companies = props.companies;
 
   const onChange = (e) => {
@@ -87,7 +87,11 @@ const CompanyList = (props) => {
     props.getListCompany();
   };
 
-
+  const cancelClick = () => {
+    setInputClass("gridInputBorderless");
+    setDisabled(true);
+    setVisible(false);
+  };
   return (
     <div>
       <Table className="gridTable" striped>
@@ -104,7 +108,15 @@ const CompanyList = (props) => {
                 >
                   Düzenle
                 </ButtonToggle>
-              ) : null}
+              ) : (
+                <ButtonToggle
+                  size="sm"
+                  onClick={(e) => cancelClick()}
+                  color="warning"
+                >
+                  İptal
+                </ButtonToggle>
+              )}
             </th>
             <th>
               {!isVisible ? (
@@ -189,7 +201,7 @@ const CompanyList = (props) => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={(e) => addCompanyClick()} color="primary">
+          <Button size="sm" onClick={(e) => addCompanyClick()} color="primary">
             EKLE
           </Button>{" "}
         </ModalFooter>

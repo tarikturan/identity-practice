@@ -7,7 +7,7 @@ const CompanyDash = (props) => {
   return (
     <div>
       <CompanyList />
-      <AddUser />{" "}
+      <AddUser />
     </div>
   );
 };
